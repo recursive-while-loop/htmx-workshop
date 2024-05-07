@@ -1,3 +1,8 @@
-<li class="border p-4">
+<li
+  class="border p-4"
+  draggable="true"
+  x-data=""
+  @dragstart="event.dataTransfer.setData('text', '{{chat.id}}')"
+>
   {{chat.title}}
 </li>

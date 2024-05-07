@@ -1,0 +1,28 @@
+<li
+  id="folder-{{folder.id}}"
+  class="border p-4 bg-slate-200 hover:bg-slate-300"
+  x-data="{ hovered: false, postURL: '/' }"
+  @dragover.prevent="hovered = true;"
+  @dragleave.prevent="hovered = false;"
+  @drop.prevent="
+    console.log('drop', $event);
+    hovered = false;
+    postURL = `/chat/${$event.dataTransfer.getData('text')}/set-folder/{{folder.id}}`;
+    $nextTick(() => {
+      htmx.process(htmx.find('#folder-{{folder.id}}'));
+      $nextTick(() => {
+        $dispatch('chat-dropped');
+      });
+    });
+  "
+  :class="hovered ? 'bg-slate-300' : ''"
+  hx-trigger="chat-dropped"
+  hx-target="#page"
+  :hx-post="postURL"
+>
+  {{folder.title}}
+</li>
+
+  {{#each folder.chats}}
+      {{> add_chat chat=this }}
+    {{/each}}
