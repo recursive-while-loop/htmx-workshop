@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "init": "npm i && npx prisma migrate dev",
     "example_toggle_button": "nodemon example_toggle_button.ts -e ts,hbs",
     "example_side_menu": "nodemon example_side_menu.ts -e ts,hbs",
     "example_crud": "nodemon example_crud.ts -e ts,hbs"
-
   },
   "keywords": [],
   "author": "",
